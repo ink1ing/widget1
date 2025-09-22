@@ -13,6 +13,7 @@ import SwiftUI
 struct ClassScheduleWidgetBundle: WidgetBundle {
     var body: some Widget {
         ClassScheduleWidget()
+        ClassScheduleDailyWidget()
     }
 }
 #endif

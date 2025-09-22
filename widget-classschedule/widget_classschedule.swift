@@ -40,12 +40,30 @@ struct ClassScheduleProvider: TimelineProvider {
             schedule: schedule
         )
         
-        // 每小时刷新一次
-        let nextUpdate = Calendar.current.date(byAdding: .hour, value: 1, to: currentDate)!
+        let nextUpdate = nextWidgetRefreshDate(after: currentDate)
         let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
-        
+
         completion(timeline)
     }
+}
+
+// 计算下一个刷新时间，确保上午/下午/晚上切换即时生效
+private func nextWidgetRefreshDate(after date: Date) -> Date {
+    let calendar = Calendar.current
+    let boundaryHours = [12, 18, 22]
+
+    let nextBoundary = boundaryHours
+        .compactMap { hour -> Date? in
+            calendar.nextDate(after: date, matching: DateComponents(hour: hour, minute: 0), matchingPolicy: .nextTime, direction: .forward)
+        }
+        .min()
+
+    if let nextBoundary {
+        return nextBoundary
+    }
+
+    // 回退到次日零点，至少每日刷新一次
+    return calendar.nextDate(after: date, matching: DateComponents(hour: 0, minute: 0), matchingPolicy: .nextTime, direction: .forward) ?? date.addingTimeInterval(3600)
 }
 
 // MARK: - Widget View
@@ -93,31 +111,35 @@ struct MediumWidgetView: View {
             if let schedule = entry.schedule {
                 let todayWeekday = currentWeekday()
                 let dayCourses = schedule.courses(for: todayWeekday)
-                let dayName = weekdayDisplayName(todayWeekday)
+                let periodText = dayPeriod(for: Date())
 
-                headerInfoView(weekNumber: schedule.weekNumber)
+                headerInfoView(weekNumber: schedule.weekNumber, period: periodText)
                     .frame(maxWidth: .infinity, alignment: .leading)
 
                 if !dayCourses.isEmpty {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 12) {
-                            ForEach(dayCourses) { course in
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(course.name)
-                                        .font(.subheadline)
-                                        .fontWeight(.semibold)
-                                        .lineLimit(1)
-                                    Text(course.location)
-                                        .font(.caption)
-                                        .foregroundColor(.secondary)
-                                    Text("\(course.timeSlot.displayName) · \(course.timeDescription)")
-                                        .font(.caption2)
-                                        .foregroundColor(.secondary)
-                                }
-                                .padding(10)
-                                .background(Color.white.opacity(0.15))
-                                .cornerRadius(10)
+                    let limitedCourses = Array(dayCourses.prefix(2))
+
+                    let columns = [
+                        GridItem(.flexible(minimum: 120), spacing: 12, alignment: .top),
+                        GridItem(.flexible(minimum: 120), spacing: 12, alignment: .top)
+                    ]
+
+                    LazyVGrid(columns: columns, alignment: .leading, spacing: 12) {
+                        ForEach(limitedCourses) { course in
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text(course.name)
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                                    .lineLimit(1)
+                                Text("\(formattedRoom(for: course.location)) · \(course.timeDescription)")
+                                    .font(.caption2)
+                                    .foregroundColor(.secondary)
+                                    .lineLimit(1)
                             }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(12)
+                            .background(Color.white.opacity(0.12))
+                            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                         }
                     }
                 } else {
@@ -131,13 +153,12 @@ struct MediumWidgetView: View {
                     .foregroundColor(.secondary)
             }
 
-            Spacer(minLength: 0)
-
             HStack(spacing: 12) {
                 actionButton(title: "充值", icon: "creditcard", tint: .blue, action: .url("henau://card/recharge"))
                 actionButton(title: "付款", icon: "qrcode", tint: .green, action: .url("henau://card/qr"))
                 actionButton(title: "刷新", icon: "arrow.clockwise", tint: .orange, action: .refresh)
             }
+            .padding(.top, 0)
         }
         .padding()
     }
@@ -208,25 +229,70 @@ struct LargeWidgetView: View {
         }
         .padding()
     }
-    
-private func courseLines(for course: Course) -> (title: String, room: String) {
-    let title = course.name.count > 2 ? String(course.name.prefix(2)) : course.name
-    let room = formattedRoom(for: course.location)
-    return (title, room)
 }
 
-private func formattedRoom(for location: String) -> String {
-    let alphanumerics = location.filter { $0.isLetter || $0.isNumber }
-    guard !alphanumerics.isEmpty else { return location }
+// MARK: - 新增大尺寸（横向今日课表）
+struct LargeDailyWidgetView: View {
+    let entry: ClassScheduleEntry
 
-    let letters = alphanumerics.filter { $0.isLetter }
-    let digits = alphanumerics.filter { $0.isNumber }
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            headerInfoView(weekNumber: entry.schedule?.weekNumber ?? 0)
 
-    let letterPart = letters.isEmpty ? "" : String(letters.prefix(1)).uppercased()
-    let numberPart = digits.isEmpty ? "" : String(digits.suffix(3))
+            if let schedule = entry.schedule {
+                let todayWeekday = currentWeekday()
+                let dayCourses = schedule.courses(for: todayWeekday)
 
-    return letterPart + numberPart
-}
+                if dayCourses.isEmpty {
+                    Text("今日无课程安排")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                } else {
+                    let columns = [
+                        GridItem(.adaptive(minimum: 120, maximum: 170), spacing: 12, alignment: .top)
+                    ]
+
+                    LazyVGrid(columns: columns, alignment: .leading, spacing: 12) {
+                        ForEach(dayCourses) { course in
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text(course.name)
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                                    .lineLimit(1)
+                                Text(formattedRoom(for: course.location))
+                                    .font(.caption2)
+                                    .foregroundColor(.secondary)
+                                    .lineLimit(1)
+                                Text(course.timeDescription)
+                                    .font(.caption2)
+                                    .foregroundColor(.secondary)
+                                    .lineLimit(1)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(12)
+                            .background(Color.white.opacity(0.12))
+                            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+
+                HStack(spacing: 14) {
+                    actionButton(title: "充值", icon: "creditcard", tint: .blue, action: .url("henau://card/recharge"))
+                    actionButton(title: "付款", icon: "qrcode", tint: .green, action: .url("henau://card/qr"))
+                    actionButton(title: "刷新", icon: "arrow.clockwise", tint: .orange, action: .refresh)
+                    Spacer()
+                }
+                .padding(.top, 4)
+            } else {
+                Text("暂无课表数据")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                Spacer()
+            }
+        }
+        .padding()
+    }
 }
 
 // MARK: - Widget Configuration
@@ -248,19 +314,38 @@ struct ClassScheduleWidget: Widget {
     }
 }
 
+struct ClassScheduleDailyWidget: Widget {
+    let kind: String = "ClassScheduleDailyWidget"
+
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: ClassScheduleProvider()) { entry in
+            if #available(iOS 17.0, *) {
+                LargeDailyWidgetView(entry: entry)
+                    .containerBackground(.fill.tertiary, for: .widget)
+            } else {
+                LargeDailyWidgetView(entry: entry)
+            }
+        }
+        .configurationDisplayName("今日课表横排")
+        .description("查看当天所有课程与时间安排")
+        .supportedFamilies([.systemLarge])
+    }
+}
+
 // MARK: - 公共组件
 @ViewBuilder
-private func headerInfoView(weekNumber: Int) -> some View {
+private func headerInfoView(weekNumber: Int, period: String? = nil) -> some View {
     let weekValue = weekNumber > 0 ? weekNumber : 3
     let weekText = "第\(weekValue)周"
     let dateText = formattedDate()
     let weekdayText = weekdayDisplayName(currentWeekday())
+    let periodSuffix = period.map { " · \($0)" } ?? ""
 
     VStack(alignment: .leading, spacing: 2) {
         Text(weekText)
             .font(.headline)
             .fontWeight(.bold)
-        Text("\(dateText) · \(weekdayText)")
+        Text("\(dateText) · \(weekdayText)\(periodSuffix)")
             .font(.caption)
             .foregroundColor(.secondary)
     }
@@ -340,6 +425,36 @@ private func formattedDate() -> String {
     let formatter = DateFormatter()
     formatter.dateFormat = "M.d"
     return formatter.string(from: Date())
+}
+
+private func dayPeriod(for date: Date) -> String {
+    let hour = Calendar.current.component(.hour, from: date)
+    if hour >= 22 || hour < 12 {
+        return "上午"
+    } else if hour < 18 {
+        return "下午"
+    } else {
+        return "晚上"
+    }
+}
+
+private func courseLines(for course: Course) -> (title: String, room: String) {
+    let title = course.name.count > 2 ? String(course.name.prefix(2)) : course.name
+    let room = formattedRoom(for: course.location)
+    return (title, room)
+}
+
+private func formattedRoom(for location: String) -> String {
+    let alphanumerics = location.filter { $0.isLetter || $0.isNumber }
+    guard !alphanumerics.isEmpty else { return location }
+
+    let letters = alphanumerics.filter { $0.isLetter }
+    let digits = alphanumerics.filter { $0.isNumber }
+
+    let letterPart = letters.isEmpty ? "" : String(letters.prefix(1)).uppercased()
+    let numberPart = digits.isEmpty ? "" : String(digits.suffix(3))
+
+    return letterPart + numberPart
 }
 
 @available(iOS 17.0, *)
