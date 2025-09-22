@@ -6,14 +6,85 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		1FB5AF152E7D5095001E585C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB5AF142E7D5095001E585C /* WidgetKit.framework */; };
+		1FB5AF172E7D5095001E585C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB5AF162E7D5095001E585C /* SwiftUI.framework */; };
+		1FB5AF372E7D51A4001E585C /* widget-classschedule.appex in Embed Widget Extensions */ = {isa = PBXBuildFile; fileRef = 1FB5AF2E2E7D51A3001E585C /* widget-classschedule.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1FB5AF352E7D51A4001E585C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1FB5AEF82E7D4A86001E585C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1FB5AF2D2E7D51A3001E585C;
+			remoteInfo = "widget-classschedule";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1FB5AF3C2E7D51A4001E585C /* Embed Widget Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1FB5AF372E7D51A4001E585C /* widget-classschedule.appex in Embed Widget Extensions */,
+			);
+			name = "Embed Widget Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1FB5AF002E7D4A86001E585C /* Widget1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Widget1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FB5AF122E7D5095001E585C /* widget-classscheduleExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "widget-classscheduleExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FB5AF142E7D5095001E585C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		1FB5AF162E7D5095001E585C /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		1FB5AF2E2E7D51A3001E585C /* widget-classschedule.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = "widget-classschedule.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FB5AF482E7D5584001E585C /* widget-classscheduleExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "widget-classscheduleExtension.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		1FB5AF4A2E7D56CE001E585C /* Exceptions for "Widget1" folder in "Widget1" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1FB5AEFF2E7D4A86001E585C /* Widget1 */;
+		};
+		1FB5AF5A2E7D5A00001E585C /* Exceptions for "widget-classschedule" folder in "widget-classscheduleExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1FB5AF112E7D5095001E585C /* widget-classscheduleExtension */;
+		};
+		1FB5AF6A2E7D5D20001E585C /* Exceptions for "widget-classschedule" folder in "widget-classschedule" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1FB5AF2D2E7D51A3001E585C /* widget-classschedule */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1FB5AF022E7D4A86001E585C /* Widget1 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1FB5AF4A2E7D56CE001E585C /* Exceptions for "Widget1" folder in "Widget1" target */,
+			);
 			path = Widget1;
+			sourceTree = "<group>";
+		};
+		1FB5AF182E7D5095001E585C /* widget-classschedule */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1FB5AF5A2E7D5A00001E585C /* Exceptions for "widget-classschedule" folder in "widget-classscheduleExtension" target */,
+				1FB5AF6A2E7D5D20001E585C /* Exceptions for "widget-classschedule" folder in "widget-classschedule" target */,
+			);
+			path = "widget-classschedule";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -26,13 +97,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1FB5AF0F2E7D5095001E585C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FB5AF172E7D5095001E585C /* SwiftUI.framework in Frameworks */,
+				1FB5AF152E7D5095001E585C /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FB5AF2B2E7D51A3001E585C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		1FB5AEF72E7D4A86001E585C = {
 			isa = PBXGroup;
 			children = (
+				1FB5AF482E7D5584001E585C /* widget-classscheduleExtension.entitlements */,
 				1FB5AF022E7D4A86001E585C /* Widget1 */,
+				1FB5AF182E7D5095001E585C /* widget-classschedule */,
+				1FB5AF132E7D5095001E585C /* Frameworks */,
 				1FB5AF012E7D4A86001E585C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,8 +131,27 @@
 			isa = PBXGroup;
 			children = (
 				1FB5AF002E7D4A86001E585C /* Widget1.app */,
+				1FB5AF122E7D5095001E585C /* widget-classscheduleExtension.appex */,
+				1FB5AF2E2E7D51A3001E585C /* widget-classschedule.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		1FB5AF132E7D5095001E585C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1FB5AFF92E7D636E001E585C /* widget-classschedule */,
+				1FB5AF142E7D5095001E585C /* WidgetKit.framework */,
+				1FB5AF162E7D5095001E585C /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1FB5AFF92E7D636E001E585C /* widget-classschedule */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "widget-classschedule";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -55,10 +164,12 @@
 				1FB5AEFC2E7D4A86001E585C /* Sources */,
 				1FB5AEFD2E7D4A86001E585C /* Frameworks */,
 				1FB5AEFE2E7D4A86001E585C /* Resources */,
+				1FB5AF3C2E7D51A4001E585C /* Embed Widget Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				1FB5AF362E7D51A4001E585C /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				1FB5AF022E7D4A86001E585C /* Widget1 */,
@@ -69,6 +180,50 @@
 			productName = Widget1;
 			productReference = 1FB5AF002E7D4A86001E585C /* Widget1.app */;
 			productType = "com.apple.product-type.application";
+		};
+		1FB5AF112E7D5095001E585C /* widget-classscheduleExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1FB5AF262E7D5097001E585C /* Build configuration list for PBXNativeTarget "widget-classscheduleExtension" */;
+			buildPhases = (
+				1FB5AF0E2E7D5095001E585C /* Sources */,
+				1FB5AF0F2E7D5095001E585C /* Frameworks */,
+				1FB5AF102E7D5095001E585C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				1FB5AF182E7D5095001E585C /* widget-classschedule */,
+			);
+			name = "widget-classscheduleExtension";
+			packageProductDependencies = (
+			);
+			productName = "widget-classscheduleExtension";
+			productReference = 1FB5AF122E7D5095001E585C /* widget-classscheduleExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		1FB5AF2D2E7D51A3001E585C /* widget-classschedule */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1FB5AF392E7D51A4001E585C /* Build configuration list for PBXNativeTarget "widget-classschedule" */;
+			buildPhases = (
+				1FB5AF2A2E7D51A3001E585C /* Sources */,
+				1FB5AF2B2E7D51A3001E585C /* Frameworks */,
+				1FB5AF2C2E7D51A3001E585C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				1FB5AF182E7D5095001E585C /* widget-classschedule */,
+			);
+			name = "widget-classschedule";
+			packageProductDependencies = (
+			);
+			productName = "widget-classschedule";
+			productReference = 1FB5AF2E2E7D51A3001E585C /* widget-classschedule.appex */;
+			productType = "com.apple.product-type.extensionkit-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -81,6 +236,12 @@
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					1FB5AEFF2E7D4A86001E585C = {
+						CreatedOnToolsVersion = 26.0;
+					};
+					1FB5AF112E7D5095001E585C = {
+						CreatedOnToolsVersion = 26.0;
+					};
+					1FB5AF2D2E7D51A3001E585C = {
 						CreatedOnToolsVersion = 26.0;
 					};
 				};
@@ -100,12 +261,28 @@
 			projectRoot = "";
 			targets = (
 				1FB5AEFF2E7D4A86001E585C /* Widget1 */,
+				1FB5AF112E7D5095001E585C /* widget-classscheduleExtension */,
+				1FB5AF2D2E7D51A3001E585C /* widget-classschedule */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1FB5AEFE2E7D4A86001E585C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FB5AF102E7D5095001E585C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FB5AF2C2E7D51A3001E585C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +299,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1FB5AF0E2E7D5095001E585C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FB5AF2A2E7D51A3001E585C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1FB5AF362E7D51A4001E585C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1FB5AF2D2E7D51A3001E585C /* widget-classschedule */;
+			targetProxy = 1FB5AF352E7D51A4001E585C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1FB5AF092E7D4A88001E585C /* Debug */ = {
@@ -246,6 +445,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Widget1/Widget1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 85VUQRKU57;
@@ -254,6 +454,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Widget1/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -264,24 +465,21 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ink.Widget1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
-				SDKROOT = auto;
+				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				XROS_DEPLOYMENT_TARGET = 26.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -290,6 +488,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Widget1/Widget1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 85VUQRKU57;
@@ -298,6 +497,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Widget1/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -308,24 +508,155 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ink.Widget1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
-				SDKROOT = auto;
+				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				XROS_DEPLOYMENT_TARGET = 26.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1FB5AF272E7D5097001E585C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "widget-classscheduleExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 85VUQRKU57;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "widget-classscheduleExtension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "widget-classschedule";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ink.Widget1.widget-classschedule.intent";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG APP_INTENTS_TARGET";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1FB5AF282E7D5097001E585C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "widget-classscheduleExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 85VUQRKU57;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "widget-classscheduleExtension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "widget-classschedule";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ink.Widget1.widget-classschedule.intent";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_INTENTS_TARGET;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1FB5AF3A2E7D51A4001E585C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "widget-classschedule/widget-classschedule.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 85VUQRKU57;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "widget-classschedule/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "widget-classschedule";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ink.Widget1.widget-classschedule.intent";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1FB5AF3B2E7D51A4001E585C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "widget-classschedule/widget-classschedule.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 85VUQRKU57;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "widget-classschedule/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "widget-classschedule";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ink.Widget1.widget-classschedule.intent";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -346,6 +677,24 @@
 			buildConfigurations = (
 				1FB5AF0C2E7D4A88001E585C /* Debug */,
 				1FB5AF0D2E7D4A88001E585C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1FB5AF262E7D5097001E585C /* Build configuration list for PBXNativeTarget "widget-classscheduleExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FB5AF272E7D5097001E585C /* Debug */,
+				1FB5AF282E7D5097001E585C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1FB5AF392E7D51A4001E585C /* Build configuration list for PBXNativeTarget "widget-classschedule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FB5AF3A2E7D51A4001E585C /* Debug */,
+				1FB5AF3B2E7D51A4001E585C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
